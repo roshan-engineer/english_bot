@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI English Speaking Practice</title>
+    <!-- COI Service Worker for Safari / environments without server-level COEP headers -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/coi-serviceworker.js')
+          .then(function () {
+            if (!crossOriginIsolated) {
+              location.reload();
+            }
+          })
+          .catch(function (err) {
+            console.warn('COI service worker registration failed:', err);
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
